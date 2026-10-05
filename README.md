@@ -1,38 +1,49 @@
-# 🥋 Sistema de Cadastramento de Alunos - Artes Marciais
+# Sistema de Cadastro e Chaveamento de Artes Marciais
 
-Sistema em Python desenvolvido via terminal (CLI) para gerenciamento de matriculas em academias de artes marciais. O programa realiza o cadastro de dados pessoais, validação de regras de idade e responsáveis, seleção de modalidades/graduações, venda opcional de equipamentos e processamento de pagamento.
+Projeto em Python com programas de terminal para cadastro de alunos e atletas de artes marciais. Um dos scripts também organiza atletas de Jiu-Jitsu e Luta Livre Esportiva em categorias e gera confrontos para campeonatos.
 
----
+## Arquivos do projeto
 
-## 📌 Funcionalidades
+### `cadastramentodealunos.py`
 
-- **Coleta e Validação de Dados:**
-  - Cálculo exato da idade a partir da data de nascimento.
-  - Tratamento diferenciado para menores de idade (cadastro de até 2 responsáveis e grau de parentesco).
-  - Validação de dados (Telefone com 11 dígitos, CEP com 8 dígitos).
+Fluxo de matrícula de alunos em uma academia. Solicita dados pessoais e, para menores de idade, dados de responsáveis. Permite escolher a modalidade e a graduação, oferece equipamentos para alunos iniciantes e apresenta opções de pagamento por PIX ou cartão.
 
-- **Gestão de Modalidades e Graduações:**
-  - Suporte a 3 modalidades: **Jiu-Jitsu**, **Luta Livre Esportiva** e **Muay-Thai**.
-  - Exibição de faixas/tarjas específicas ajustadas pela faixa etária (Infantil até 15 anos / Adulto a partir de 16 anos).
+### `cadastramentodeatletas.py`
 
-- **Venda de Equipamentos:**
-  - Sugestão e cálculo de trajes/equipamentos para alunos iniciantes (faixa/tarja branca).
-  - Seleção de tamanhos e cores para itens como Kimono, Faixa, Resguarde, Short e Tarja.
+Cadastro de atletas para o chaveamento de campeonatos. Solicita nome, sexo, data de nascimento, modalidade, faixa, peso, academia, professor e telefone. Valida a data de nascimento, calcula a idade e acrescenta o cadastro ao arquivo `alunos.csv`.
 
-- **Processamento de Pagamento:**
-  - Suporte a **PIX** e **Cartão** (Débito/Crédito).
-  - Validação de dados do cartão (16 dígitos e CVV de 3 dígitos).
-  - Opção de parcelamento no crédito (em até 3x).
+### `gestordechaveamento.py`
 
----
+Lê os registros de `alunos.csv`, calcula as categorias de idade e peso conforme a modalidade e agrupa os atletas por faixa, idade, peso e sexo. Em seguida, exibe os participantes de cada categoria e gera confrontos aleatórios em formato eliminatório, incluindo BYEs quando necessário e vitória por W.O. para categorias com um único atleta.
 
-## 🚀 Pré-requisitos
+### `alunos.csv`
 
-Para executar o projeto, você precisará ter o **Python 3.x** instalado em sua máquina e a biblioteca externa `emoji`.
+Arquivo de entrada e saída do fluxo de campeonato: o cadastro de atletas acrescenta linhas a esse arquivo, e o gestor usa os dados para formar as categorias. A primeira linha contém os nomes das colunas esperadas. O arquivo incluído no repositório tem dados sintéticos de demonstração; substitua-os por cadastros válidos e autorizados antes de usar o gestor em um campeonato.
 
-### Instalação das dependências
+## Requisitos
 
-Instale a biblioteca `emoji` executando o comando no terminal:
+- Python 3
+- Bibliotecas `emoji` e `pandas`
+
+Instale as bibliotecas necessárias:
 
 ```bash
-pip install emoji
+python -m pip install emoji pandas
+```
+
+## Como executar
+
+Execute os comandos a partir da pasta do projeto. O fluxo de matrícula é independente:
+
+```bash
+python cadastramentodealunos.py
+```
+
+Para cadastrar atletas e depois gerar as categorias e os confrontos:
+
+```bash
+python cadastramentodeatletas.py
+python gestordechaveamento.py
+```
+
+O gestor espera encontrar `alunos.csv` na pasta de onde for executado. O cadastro de atletas também grava nesse arquivo, criando o cabeçalho quando ele ainda não existe ou está vazio.
