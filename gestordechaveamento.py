@@ -5,7 +5,7 @@ import math
 #         GESTOR DE CHAVEAMENTO           #
 # --------------------------------------- #
 
-df = pd.read_csv('alunos.csv')
+df = pd.read_csv('cadastramento artes marciais/alunos.csv')
 
 # CATEGORIAS DE IDADE
 def categoria_idade(linha):
@@ -13,7 +13,7 @@ def categoria_idade(linha):
     modalidade = str(linha['Modalidade'])
 
     # JIU-JITSU
-    if modalidade == '1':
+    if modalidade == 'Jiu-Jitsu':
         if idade <= 6:
             return 'Pré-mirim'
         elif idade <= 9:
@@ -42,7 +42,7 @@ def categoria_idade(linha):
             return 'Master 7'
 
     # LUTA LIVRE ESPORTIVA
-    elif modalidade == '2':
+    elif modalidade == 'Luta Livre Esportiva':
         if idade <= 9:
             return 'Mirim'
         elif idade <= 12:
@@ -70,7 +70,7 @@ def categoria_peso(linha):
     sexo = str(linha['Sexo']).strip().capitalize() # Normaliza para 'Feminino' ou 'Masculino'
 
     # JIU-JITSU
-    if modalidade == '1':
+    if modalidade == 'Jiu-Jitsu':
 
         # PRÉ-MIRIM
         if cat_idade == 'Pré-mirim':
@@ -149,7 +149,7 @@ def categoria_peso(linha):
             else: return 'Pesadíssimo'
 
     # LUTA LIVRE ESPORTIVA
-    elif modalidade == '2':
+    elif modalidade == 'Luta Livre Esportiva':
 
         # MIRIM
         if cat_idade == 'Mirim':
