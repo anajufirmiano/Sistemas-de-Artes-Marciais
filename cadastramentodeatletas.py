@@ -88,12 +88,21 @@ while True:
 
 print (emoji.emojize('Cadastro Finalizado com sucesso! :smiling_face:'))
 
-# Faz a checagem antes de abrir o arquivo
-cadastro_vazio = not os.path.exists('alunos.csv') or os.path.getsize('alunos.csv') == 0
+# Define o caminho do arquivo no mesmo diretório do script
+diretorio_script = os.path.dirname(os.path.abspath(__file__))
+caminho_csv = os.path.join(diretorio_script, 'alunos.csv')
 
-with open('alunos.csv', 'a', newline='', encoding='utf-8') as cadastro:
+# Verifica se o arquivo precisa de cabeçalho
+cadastro_vazio = not os.path.exists(caminho_csv) or os.path.getsize(caminho_csv) == 0
+
+with open(caminho_csv, 'a', newline='', encoding='utf-8') as cadastro:
     escritor = csv.writer(cadastro)
+    
     if cadastro_vazio:
-        escritor.writerow(['Nome Completo', 'Sexo', 'Modalidade', 'Data de Nascimento', 'Idade', 'Faixa', 'Peso', 'CT', 'Professor', 'Número de telefone'])
+        escritor.writerow([
+            'Nome Completo', 'Sexo', 'Modalidade', 'Data de Nascimento', 
+            'Idade', 'Faixa', 'Peso', 'CT', 'Professor', 'Número de telefone'
+        ])
+        
     # Adiciona o novo aluno
     escritor.writerow([nome, sexo, modalidade, nascimento, idade, faixa, peso, academia, professor, numero])
