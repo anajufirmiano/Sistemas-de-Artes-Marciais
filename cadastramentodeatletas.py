@@ -99,10 +99,7 @@ with open(caminho_csv, 'a', newline='', encoding='utf-8') as cadastro:
     escritor = csv.writer(cadastro)
     
     if cadastro_vazio:
-        escritor.writerow([
-            'Nome Completo', 'Sexo', 'Modalidade', 'Data de Nascimento', 
-            'Idade', 'Faixa', 'Peso', 'CT', 'Professor', 'Número de telefone'
-        ])
-        
+        escritor.writerow(['Nome Completo', 'Sexo', 'Modalidade', 'Data de Nascimento', 'Idade', 'Faixa', 'Peso', 'CT', 'Professor', 'Número de telefone'])
+
     # Adiciona o novo aluno
     escritor.writerow([nome, sexo, modalidade, nascimento, idade, faixa, peso, academia, professor, numero])
