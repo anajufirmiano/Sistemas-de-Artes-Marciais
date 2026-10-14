@@ -2,9 +2,12 @@ from datetime import datetime
 from time import sleep
 from emoji import emojize
 
-print('-=' * 50)
+def lin():
+    print('-=' * 50)
+
+lin()
 print('                                       CADASTRAMENTO DE ALUNOS                                     ')
-print('-=' * 50)
+lin()
 
 # ------------------------------ #
 # 1. RECEBER OS DADOS DOS ALUNOS #
